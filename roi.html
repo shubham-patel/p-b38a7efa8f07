@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROI Calculator | Senior Commercial Capital x Sentience Growth</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f2a24;--ink2:#163b33;--gold:#d4a73c;--gold2:#f0c75e;--cream:#faf7f0;--text:#1d2a27;--muted:#5d6b67;--line:#e4ded0;--pos:#1f7a5c;--neg:#b4233c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--cream);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.12;color:var(--ink)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(15,42,36,.95);color:#fff}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;font-size:19px;text-decoration:none;color:#fff;white-space:nowrap}
+.mark{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--gold2),var(--gold));display:grid;place-items:center;color:var(--ink);font:800 15px Inter,sans-serif;flex:none}
+.brand small{font:500 13px Inter,sans-serif;color:#b9cfc8}
+.back{color:#fff;text-decoration:none;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:10px;white-space:nowrap}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.hero{background:radial-gradient(1100px 420px at 12% 0%,#1f4a40 0%,var(--ink) 62%);color:#fff;padding:56px 0 64px}
+.eyebrow{display:inline-block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);font-weight:700;margin-bottom:12px}
+.hero h1{color:#fff;font-size:clamp(34px,5vw,56px);margin-bottom:12px}.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:#d5e2dd;font-size:clamp(16px,2vw,19px);max-width:720px}
+main{padding:40px 0 70px}
+.grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:22px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.card h2{font-size:22px;margin-bottom:4px}.card .hint{color:var(--muted);font-size:14px;margin-bottom:18px}
+.f{margin-bottom:18px}.f label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:15px;color:var(--ink);font-weight:600}
+.tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#efebe0;color:var(--muted);white-space:nowrap}
+.tag.ours{background:var(--ink);color:var(--gold2)}.tag.his{background:#fff4d6;color:#6b5210}
+.row{display:flex;gap:12px;align-items:center;margin-top:8px}
+input[type=range]{flex:1;accent-color:var(--gold);height:28px;min-width:0}
+input[type=number]{width:120px;background:var(--cream);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:700 17px Inter,sans-serif;text-align:right}
+.fixed{display:flex;justify-content:space-between;background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-weight:700;color:var(--ink)}
+.tog{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px}.tog button{flex:1;background:none;border:0;color:var(--muted);padding:9px;font:700 14px Inter,sans-serif;cursor:pointer}.tog button.on{background:var(--ink);color:var(--gold2)}
+.small{font-size:13px;color:var(--muted);margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.k{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.k .v{font:700 clamp(26px,3vw,36px) Fraunces,serif;color:var(--ink);letter-spacing:-.01em}.k .l{color:var(--muted);font-size:13.5px;margin-top:2px}.k .s{font-size:12.5px;color:var(--muted);margin-top:4px}
+.k.hi{background:var(--ink);border-color:var(--ink)}.k.hi .v{color:var(--gold2)}.k.hi .l,.k.hi .s{color:#cfe0da}
+.pos{color:var(--pos)!important}.neg{color:var(--neg)!important}.k.hi .v.pos{color:var(--gold2)!important}
+h3{margin:24px 0 10px;font-size:19px}
+table{width:100%;border-collapse:collapse;font-size:15.5px}th,td{padding:9px 8px;border-bottom:1px dashed var(--line);text-align:right}th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.bars{display:flex;gap:18px;align-items:flex-end;height:170px;margin-top:14px}.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}.bar .pair{display:flex;gap:6px;align-items:flex-end;width:100%;height:130px}.bar .pair i{flex:1;border-radius:6px 6px 2px 2px;transition:height .5s}.bar .r{background:linear-gradient(180deg,var(--gold2),var(--gold))}.bar .c{background:linear-gradient(180deg,#9aa8a3,#d3d9d6)}.bar span{font-size:13px;color:var(--muted)}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:16px;margin-top:8px}.legend b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.callout{margin-top:16px;background:#fff4d6;border:1px solid #ecd9a0;color:#6b5210;border-radius:12px;padding:12px 14px;font-size:15px}
+.note{color:var(--muted);font-size:13.5px;margin-top:16px}
+footer{padding:28px 0;text-align:center;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+footer .disc{max-width:760px;margin:0 auto 8px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+@media (max-width:520px){.brand{font-size:13.5px;gap:8px}.brand small{display:none}.back{font-size:12.5px;padding:7px 10px}.kpis{grid-template-columns:1fr 1fr}.k .v{font-size:24px}table{font-size:12.5px}th,td{padding:7px 3px;white-space:nowrap}th{font-size:10.5px;letter-spacing:.04em}.card{padding:16px}}
+</style></head><body>
+<div class="topbar"><div class="wrap">
+ <a class="brand" href="index.html"><span class="mark">SC</span>Senior Commercial Capital <small>&times; Sentience Growth</small></a>
+ <a class="back" href="index.html">&larr; Proposal</a>
+</div></div>
+<header class="hero"><div class="wrap">
+ <span class="eyebrow">Senior Commercial Capital &times; Sentience Growth &middot; ROI</span>
+ <h1>Your numbers, <em>live.</em></h1>
+ <p>What qualified borrower calls are worth to Senior Commercial Capital. The "Example" values are placeholders. Enter your own show rate, close rate, loan size and points to see your real return.</p>
+</div></header>
+<main><div class="wrap grid">
+ <div class="card" id="inputs"></div>
+ <div class="card">
+  <h2 id="o_head" style="font-size:24px;margin-bottom:14px">At these example numbers, 1 funded loan covers the month.</h2>
+  <div class="kpis">
+   <div class="k"><div class="v" id="o_loans">–</div><div class="l">funded loans / month</div><div class="s" id="o_held"></div></div>
+   <div class="k"><div class="v pos" id="o_rev">–</div><div class="l">revenue / month</div></div>
+   <div class="k"><div class="v" id="o_cost">–</div><div class="l">cost, month 1</div><div class="s" id="o_cost3"></div></div>
+   <div class="k"><div class="v" id="o_net">–</div><div class="l">net profit, month 1</div><div class="s" id="o_net3"></div></div>
+   <div class="k hi"><div class="v" id="o_roi">–</div><div class="l">ROI multiple, month 1</div><div class="s" id="o_roi3"></div></div>
+   <div class="k"><div class="v" id="o_cpl">–</div><div class="l">cost per funded loan, month 1</div><div class="s" id="o_cpl3"></div></div>
+   <div class="k"><div class="v" id="o_be">–</div><div class="l">funded loans to break even, month 1</div><div class="s" id="o_be3"></div></div>
+   <div class="k"><div class="v" id="o_rpl">–</div><div class="l">revenue per funded loan</div></div>
+  </div>
+  <h3>Month by month</h3>
+  <table><thead><tr><th></th><th>Month 1</th><th>Month 2</th><th>Month 3+</th></tr></thead><tbody id="months"></tbody></table>
+  <h3>Example projection (cumulative)</h3>
+  <table><thead><tr><th></th><th>3 months</th><th>6 months</th><th>12 months</th></tr></thead><tbody id="proj"></tbody></table>
+  <div class="bars" id="bars"></div>
+  <div class="legend"><span><b style="background:var(--gold)"></b>Revenue</span><span><b style="background:#9aa8a3"></b>Cost</span></div>
+  <p class="note">Call fees = calls held &times; $300. Infrastructure is $1,000 one-time, paid as $500 in month 1 and $500 in month 2.</p>
+ </div>
+</div></main>
+<footer><div class="wrap"><p class="disc">Illustration only, not a guarantee of funded loans or revenue. Our guarantee: 10 qualified calls within 30 days of launch, or cancel and get your call fees back. The infrastructure fee is non-refundable.</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0"><a class="back" style="color:var(--ink);border-color:var(--line)" href="index.html">&larr; Proposal</a><a class="back" style="background:var(--gold);color:var(--ink);border-color:var(--gold)" href="mailto:shubhamg@sentiencegrowth.com?subject=Senior%20Commercial%20Capital%3A%20let%27s%20go">Reply &ldquo;Let's go&rdquo; &rarr;</a></div>Shubham Patel &middot; Sentience Growth &middot; shubhamg@sentiencegrowth.com</div></footer>
+<script>
+const F=[
+ {id:'calls',label:'Qualified calls / month',min:1,max:50,step:1,v:10,tag:'Our guarantee: 10 in 30 days',cls:'ours'},
+ {id:'show',label:'Show rate (calls held)',min:30,max:100,step:1,v:80,suf:'%',tag:'Example'},
+ {id:'close',label:'Close rate (call held → loan funded)',min:1,max:80,step:1,v:20,tag:'Example'},
+ {id:'loan',label:'Average loan size ($)',min:50000,max:2000000,step:5000,v:250000,tag:'Example'},
+ {id:'pts',label:'Points (% of loan)',min:0.25,max:10,step:0.25,v:2.5,tag:'Example',mode:'pts'},
+ {id:'fees',label:'Other fees per loan ($)',min:0,max:25000,step:100,v:1500,tag:'Example',mode:'pts'},
+ {id:'flat',label:'Flat revenue per funded loan ($)',min:500,max:100000,step:250,v:7500,tag:'Example',mode:'flat'},
+ {id:'cpc',label:'Price per qualified call',min:300,max:300,step:1,v:300,tag:'Our rate',fixed:'$300'}];
+const INFRA=[500,500];let mode='pts';const S={};F.forEach(f=>S[f.id]=f.v);
+const box=document.getElementById('inputs');
+let h='<h2>Your inputs</h2><p class="hint">Move a slider or type your own number.</p><div class="f"><label>Revenue per funded loan</label><div class="tog"><button data-m="pts" class="on">Points + fees</button><button data-m="flat">Flat $</button></div></div>';
+F.forEach(f=>{h+=`<div class="f" id="w_${f.id}"><label><span>${f.label}</span><span class="tag ${f.cls||''}">${f.tag}</span></label>`+(f.fixed?`<div class="fixed"><span>Fixed</span><span>${f.fixed}</span></div><p class="small">billed only for qualified calls that show</p>`:`<div class="row"><input type="range" id="r_${f.id}" aria-label="${f.label}" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.v}"><input type="number" id="n_${f.id}" aria-label="${f.label}" min="0" step="${f.step}" value="${f.v}"></div>`)+`</div>`});
+h+='<div class="f"><label><span>Infrastructure</span><span class="tag">One-time</span></label><div class="fixed"><span>$1,000 total</span><span>$500 mo 1 + $500 mo 2</span></div></div>';
+box.innerHTML=h;
+F.filter(f=>!f.fixed).forEach(f=>{const r=document.getElementById('r_'+f.id),n=document.getElementById('n_'+f.id);
+ r.oninput=()=>{n.value=r.value;S[f.id]=+r.value;calc()};n.oninput=()=>{S[f.id]=+n.value||0;r.value=n.value;calc()}});
+box.querySelectorAll('.tog button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;box.querySelectorAll('.tog button').forEach(x=>x.classList.toggle('on',x===b));vis();calc()});
+function vis(){F.filter(f=>f.mode).forEach(f=>document.getElementById('w_'+f.id).style.display=f.mode==mode?'':'none');document.getElementById('w_loan').style.opacity=mode=='pts'?1:.5}
+const $=n=>(n<0?'-$':'$')+Math.round(Math.abs(n)).toLocaleString('en-US');
+const x=n=>isFinite(n)?n.toFixed(1)+'×':'—';
+function calc(){
+ const held=S.calls*S.show/100,loans=held*S.close/100;
+ const rpl=mode=='pts'?S.loan*S.pts/100+S.fees:S.flat;
+ const rev=loans*rpl,cc=held*S.cpc;
+ const cost=[cc+INFRA[0],cc+INFRA[1],cc];
+ const t=(id,v,c)=>{const e=document.getElementById(id);e.textContent=v;if(c!==undefined){e.classList.toggle('neg',c<0);e.classList.toggle('pos',c>=0)}};
+ t('o_loans',loans.toFixed(1));t('o_held',held.toFixed(1)+' calls held');t('o_rev',$(rev));t('o_rpl',$(rpl));
+ t('o_cost',$(cost[0]));t('o_cost3','month 3+: '+$(cost[2]));
+ t('o_net',$(rev-cost[0]),rev-cost[0]);t('o_net3','month 3+: '+$(rev-cost[2]));
+ t('o_roi',x(rev/cost[0]));t('o_roi3','month 3+: '+x(rev/cost[2]));
+ t('o_cpl',loans>0?$(cost[0]/loans):'—');t('o_cpl3','month 3+: '+(loans>0?$(cost[2]/loans):'—'));
+ const be=cost[0]/rpl,be3=cost[2]/rpl;
+ t('o_be',rpl>0?be.toFixed(2):'—');t('o_be3','month 3+: '+(rpl>0?be3.toFixed(2):'—'));
+ document.getElementById('o_head').textContent=rpl<=0?'Enter your revenue per loan to see break-even.':be<=1?'At these example numbers, 1 funded loan covers the month.':`At these numbers, ${Math.ceil(be)} funded loans cover the month.`;
+ document.getElementById('months').innerHTML=
+  `<tr><td>Revenue</td>${cost.map(()=>`<td class="pos">${$(rev)}</td>`).join('')}</tr>`+
+  `<tr><td>Cost</td>${cost.map(c=>`<td>${$(c)}</td>`).join('')}</tr>`+
+  `<tr><td><b>Net profit</b></td>${cost.map(c=>`<td><b class="${rev-c<0?'neg':'pos'}">${$(rev-c)}</b></td>`).join('')}</tr>`+
+  `<tr><td>ROI multiple</td>${cost.map(c=>`<td>${x(rev/c)}</td>`).join('')}</tr>`;
+ const P=[3,6,12].map(m=>{const R=rev*m,C=cc*m+INFRA[0]+(m>=2?INFRA[1]:0);return{m,R,C,N:R-C,L:loans*m}});
+ document.getElementById('proj').innerHTML=
+  `<tr><td>Funded loans</td>${P.map(p=>`<td>${p.L.toFixed(1)}</td>`).join('')}</tr>`+
+  `<tr><td>Revenue</td>${P.map(p=>`<td class="pos">${$(p.R)}</td>`).join('')}</tr>`+
+  `<tr><td>Cost</td>${P.map(p=>`<td>${$(p.C)}</td>`).join('')}</tr>`+
+  `<tr><td><b>Net profit</b></td>${P.map(p=>`<td><b class="${p.N<0?'neg':'pos'}">${$(p.N)}</b></td>`).join('')}</tr>`;
+ const mx=Math.max(1,...P.map(p=>Math.max(p.R,p.C)));
+ document.getElementById('bars').innerHTML=P.map(p=>`<div class="bar"><div class="pair"><i class="r" style="height:${p.R/mx*100}%"></i><i class="c" style="height:${p.C/mx*100}%"></i></div><span>${p.m} mo</span></div>`).join('');
+ window.__roi={held,loans,rpl,rev,cost,be,be3,P};
+}
+vis();calc();
+</script></body></html>
